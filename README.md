@@ -28,7 +28,7 @@ A real-time chat application that detects emotions in messages using Natural Lan
 
 1. Navigate to the backend directory:
    ```bash
-   cd emotion-detector
+ 
    cd backend
    ```
 
