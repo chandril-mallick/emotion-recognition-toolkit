@@ -1,53 +1,144 @@
-# Emotion Detector Chat App
+# Emotion Detection System
 
-A real-time chat application that detects emotions in messages using Natural Language Processing (NLP) and displays corresponding emojis in the navbar.
+A comprehensive Natural Language Processing (NLP) application that detects emotions in text messages in real-time. This project includes a FastAPI backend, React frontend, and a Chrome extension for seamless integration.
 
 ## Features
 
-- Real-time emotion detection as you type
-- Displays emotion emojis in the navbar
-- Modern and responsive UI
-- Dark mode support
-- Built with React and FastAPI
+- Real-time emotion detection in text messages
+- Support for multiple emotion categories: joy, sadness, anger, fear, surprise, disgust, and neutral
+- WebSocket-based real-time communication
+- Responsive web interface with emotion visualization
+- Chrome extension for browser integration
+- RESTful API for emotion detection
 
 ## Tech Stack
 
-- **Frontend**: React, Vite, Axios
-- **Backend**: FastAPI, Python
-- **NLP Model**: j-hartmann/emotion-english-distilroberta-base from Hugging Face
+### Backend
+- **Framework**: FastAPI
+- **NLP Model**: j-hartmann/emotion-english-distilroberta-base
+- **WebSocket Support**: Built-in WebSocket with FastAPI
+- **Dependencies**: Transformers, PyTorch, Pydantic, Uvicorn
+
+### Frontend
+- **Framework**: React with Vite
+- **State Management**: React Hooks
+- **Styling**: CSS Modules
+- **WebSocket Client**: Native WebSocket API
+
+### Chrome Extension
+- Manifest V3 compatible
+- Content Script for message interception
+- Background service worker
+- Real-time emotion analysis
 
 ## Prerequisites
 
-- Node.js (v14 or higher)
-- Python (3.8 or higher)
-- pip (Python package manager)
+- Python 3.8+
+- Node.js 16+
+- npm or yarn
+- Chrome browser (for extension)
 
-## Setup Instructions
+## Installation
 
-### Backend Setup
-
-1. Navigate to the backend directory:
+1. **Clone the repository**
    ```bash
- 
+   git clone https://github.com/chandril-mallick/Emotion-Detection.git
+   cd Emotion-Detection
+   ```
+
+2. **Backend Setup**
+   ```bash
    cd backend
-   ```
-
-2. Create a virtual environment (recommended):
-   ```bash
-   python3 -m venv venv
+   python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-
-3. Install the required Python packages:
-   ```bash
    pip install -r requirements.txt
    ```
 
-4. Start the FastAPI server:
+3. **Frontend Setup**
    ```bash
+   cd ../frontend
+   npm install
+   ```
+
+4. **Chrome Extension Setup**
+   - Open Chrome and navigate to `chrome://extensions/`
+   - Enable "Developer mode"
+   - Click "Load unpacked" and select the `chrome-extension` directory
+
+## Running the Application
+
+1. **Start the Backend**
+   ```bash
+   cd backend
    uvicorn app:app --reload
    ```
-   The backend server will be available at `http://localhost:8000`
+
+2. **Start the Frontend**
+   ```bash
+   cd frontend
+   npm run dev
+   ```
+
+3. **Using the Chrome Extension**
+   - Pin the Emotion Detection extension to your Chrome toolbar
+   - Click the extension icon to open the chat interface
+   - Start sending messages to see emotion detection in action
+
+## API Documentation
+
+### REST API Endpoints
+
+- `POST /detect` - Analyze emotion in a single message
+  - Request body: `{"message": "Your text here"}`
+  - Response: `{"emotion": "joy", "confidence": 0.95}`
+
+### WebSocket Endpoint
+
+- `ws://localhost:8000/ws/{user_id}` - Real-time communication
+  - Send: `{"message": "Hello", "sender": "user1", "receiver": "user2"}`
+  - Receive: `{"message": "Hello", "emotion": "joy", "confidence": 0.95}`
+
+## Project Structure
+
+```
+emotion-detector/
+├── backend/               # FastAPI application
+│   ├── app.py            # Main application file
+│   └── requirements.txt  # Python dependencies
+├── frontend/             # React application
+│   ├── src/
+│   │   ├── components/   # React components
+│   │   └── App.jsx       # Main application component
+│   └── package.json      # Node.js dependencies
+├── chrome-extension/     # Chrome extension files
+│   ├── background.js     # Extension background script
+│   ├── content.js        # Content script for web pages
+│   └── manifest.json     # Extension manifest
+└── README.md            # This file
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- [Hugging Face Transformers](https://huggingface.co/transformers/)
+- [FastAPI](https://fastapi.tiangolo.com/)
+- [React](https://reactjs.org/)
+- [Chrome Extension API](https://developer.chrome.com/docs/extensions/)
+
+## Contact
+
+For any inquiries, please open an issue on the [GitHub repository](https://github.com/chandril-mallick/Emotion-Detection).
 
 ### Frontend Setup
 
